@@ -12,7 +12,7 @@ Installation
 The _Chrome Web Store_ isn't likely to host our **totally innocent**
 extension, so it's _Plan B_:
 
-1. Download _gumshoe.crx_ using Chromium (or Chrome)
+1. [Download](https://github.com/S489/gumshoe/downloads) _gumshoe.crx_
 2. Click "Continue" on bottom-left prompt
 3. Click "Install" on popup prompt
 
