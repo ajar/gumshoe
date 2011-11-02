@@ -14,7 +14,7 @@ extension, so it's _Plan B_:
 
 1. Download _gumshoe.crx_ using Chromium (or Chrome)
 2. Click "Continue" on bottom-left prompt
-3. Click "Accept" on popup prompt
+3. Click "Install" on popup prompt
 
 
 Getting Started
