@@ -1,5 +1,5 @@
-Gumshoe
-=======
+Synopsis
+--------
 
 Gumshoe is a Chromium extension for discreet password logging. It monitors
 the submission of all forms with a password field and stores any unique
