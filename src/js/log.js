@@ -30,7 +30,6 @@ function monitorSubmissions() {
 
                 if (pass && user)
                     break;
-
             }
 
             if (user && pass) {

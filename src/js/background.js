@@ -28,7 +28,6 @@ chrome.extension.onRequest.addListener(function(request, tab, respond) {
 
                 if (request.crud == 'read')
                     query = 'SELECT *' + query + ' ORDER BY time DESC';
-
                 if (request.crud == 'delete')
                     query = 'DELETE' + query;
 
@@ -49,7 +48,7 @@ chrome.extension.onRequest.addListener(function(request, tab, respond) {
 });
 
 // prepare stuff on first run
-if (!localStorage['passcode']) {
+if (! localStorage['passcode']) {
 
     db.transaction(function(tx) {
 
