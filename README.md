@@ -20,9 +20,9 @@ extension, so it's _Plan B_:
 Getting Started
 ---------------
 
-Once installed, typing "gselog" anywhere should reveal the log management
+Once installed, typing `gselog` anywhere should reveal the log management
 page. From here, you can search for records, delete those records, and
-change "gselog" to something more creative.
+change `gselog` to something more creative.
 
 Provided that the extension is enabled and the user/password pair has not
 previously been recorded, login attempts to most (semantically correct)
