@@ -8,7 +8,7 @@
       "48": "img/icon48.png"
     },
     "permissions": ["tabs"],
-    "background_page": "html/background.html",
+    "background": "html/background.html",
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
