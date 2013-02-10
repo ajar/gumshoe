@@ -59,5 +59,5 @@ if (! localStorage['passcode']) {
     });
 
     // set default passcode for `manage`
-    localStorage['passcode'] = 'gselog';
+    localStorage['passcode'] = 'doctor';
 }
