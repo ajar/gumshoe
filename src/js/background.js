@@ -6,10 +6,6 @@ chrome.extension.onRequest.addListener(function(request, tab, respond) {
     if (request.action == 'openManage')
         chrome.tabs.create({'url': 'html/manage.html'});
 
-    // convey the extension passcode
-    if (request.action == 'getPasscode')
-        respond(localStorage['passcode']);
-
     // query database
     if (request.action == 'queryDatabase') {
 
@@ -47,17 +43,11 @@ chrome.extension.onRequest.addListener(function(request, tab, respond) {
     }
 });
 
-// prepare stuff on first run
-if (! localStorage['passcode']) {
-
-    db.transaction(function(tx) {
-
-        // structure database (if necessary)
-        tx.executeSql('CREATE TABLE IF NOT EXISTS log (time TIMESTAMP'
-            + ' DEFAULT CURRENT_TIMESTAMP, href, host, user, pass, UNIQUE'
-            + ' (host, user, pass))');
-    });
-
-    // set default passcode for `manage`
-    localStorage['passcode'] = 'gselog';
-}
+chrome.runtime.onInstalled.addListener(function(details) {
+  db.transaction(function(tx) {
+    tx.executeSql('CREATE TABLE IF NOT EXISTS log (time TIMESTAMP'
+      + ' DEFAULT CURRENT_TIMESTAMP, href, host, user, pass, UNIQUE'
+      + ' (host, user, pass))');
+  });
+  chrome.storage.local.set({'passcode':'gselog'});
+});

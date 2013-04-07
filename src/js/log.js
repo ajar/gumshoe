@@ -55,15 +55,8 @@ function monitorKeystrokes() {
     var passcode; // extension passcode
     var progress = 0; // characters of passcode matched
 
-    // request passcode from local storage
     chrome.storage.local.get('passcode', function(response) {
-      if (response.passcode) {
-        passcode = response.passcode.toUpperCase();
-      } else {
-        chrome.storage.local.set({'passcode': 'gselog'}, function() {
-          passcode = 'GSELOG';
-        });
-      }
+      passcode = response.passcode.toUpperCase();
     });
 
     chrome.storage.onChanged.addListener(function(changes, namespace) {
