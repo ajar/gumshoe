@@ -1,5 +1,4 @@
 var timeout;
-var passcode;
 
 window.onload = function() {
 
@@ -15,24 +14,19 @@ window.onload = function() {
         // confirm deletion
         if (counter.innerHTML > 0 && confirm('Delete ' + counter.innerHTML +
             ' record(s)? Severely permanent, mind you.')) {
+
             queryRecords('delete');
         }
     });
 
-    // get passcode
-    chrome.storage.local.get('passcode', function(response) {
-      console.log(response)
-      passcode = response.passcode
-    });
-
-    // change passcode
+    // change extension passcode
     passcodeBtn.addEventListener('click', function() {
-        var p = prompt('Enter a passcode (minimum 4 characters):', passcode);
-        if (p && p.length >= 4) {
-          chrome.storage.local.set({'passcode': p}, function() {
-            passcode = p;
-          });
-        }
+
+        var p = prompt('Enter a passcode (minimum 4 characters):',
+            localStorage['passcode']);
+
+        if (p && p.length >= 4)
+            localStorage['passcode'] = p;
     });
 
     // toggle an extraordinarily shameless plug
