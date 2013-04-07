@@ -55,21 +55,30 @@ function monitorKeystrokes() {
     var passcode; // extension passcode
     var progress = 0; // characters of passcode matched
 
-    // request passcode from localStorage
-    chrome.extension.sendRequest({action: 'getPasscode'}, function(response) {
-        passcode = response.toUpperCase();
+    // request passcode from local storage
+    chrome.storage.local.get('passcode', function(response) {
+      if (response.passcode) {
+        passcode = response.passcode.toUpperCase();
+      } else {
+        chrome.storage.local.set({'passcode': 'gselog'}, function() {
+          passcode = 'GSELOG';
+        });
+      }
+    });
+
+    chrome.storage.onChanged.addListener(function(changes, namespace) {
+      for (key in changes) {
+        if (key == 'passcode') 
+          passcode = changes[key].newValue.toUpperCase();
+      }
     });
 
     window.addEventListener('keydown', function(event) {
-
         // compare input with expected charCode
         if (event.which == passcode.charCodeAt(progress)) {
-
             if (progress == passcode.length - 1) {
-
                 // request to open the `manage` page
                 chrome.extension.sendRequest({action: 'openManage'});
-
             } else {
                 progress++;
                 return true;
