@@ -1,7 +1,7 @@
 Gumshoe
 =======
 
-Gumshoe is a Chromium extension for discreet password logging. It monitors
+Gumshoe is a Chrome extension for discreet password logging. It monitors
 the submission of all forms with a password field and stores any unique
 login details in a local database.
 
@@ -9,12 +9,8 @@ login details in a local database.
 Installation
 -----------
 
-The _Chrome Web Store_ isn't likely to host our **totally innocent**
-extension, so it's _Plan B_:
-
-  1. [Download](https://github.com/S489/gumshoe/downloads) _gumshoe.crx_
-  2. Click "Continue" on bottom-left prompt
-  3. Click "Install" on popup prompt
+This thing's actually on the [Chrome Web Store](http://goo.gl/z8SIH).
+Can you believe it?
 
 
 Getting Started
