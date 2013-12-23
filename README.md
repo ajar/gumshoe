@@ -44,11 +44,7 @@ the passcode, but they aren't recorded.)
 **Right, but couldn't _you_ steal _my_ passwords?**
 
 No. All data is stored locally using Web SQL; Gumshoe never communicates
-with another machine (anxiety or something).
-
-**Why isn't this in the _Chrome Web Store_, then?**
-
-It still logs passwords.
+with another machine.
 
 
 Disclaimer
