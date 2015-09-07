@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Gumshoe",
-	"version": "2.1",
+	"version": "2.2.0",
 	"description": "Discreetly records login data to local storage.",
 	"icons": {
 		"128": "img/icon128.png",

