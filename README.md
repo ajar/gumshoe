@@ -9,8 +9,19 @@ login details in a local database.
 Installation
 -----------
 
-This thing's actually on the [Chrome Web Store](http://goo.gl/z8SIH).
-Can you believe it?
+~~This thing's actually on the [Chrome Web Store](http://goo.gl/z8SIH).
+Can you believe it?~~
+
+This extension has been on the Chrome Web Store for three years. Can you believe it?
+In order to manually install this extension you need to:
+* Fork repository
+* Open Extension tab in Your Chrome browser [by clicking here](chrome://extensions/)
+* Turn on "Developer Mode"
+* Click "Load Unpacked" and locate extension directory
+* Click "Open"
+
+Congrats, you DID it =)
+
 
 
 Getting Started
